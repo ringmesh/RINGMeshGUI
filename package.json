@@ -1,0 +1,21 @@
+{
+  "name": "ringmesh-gui",
+  "version": "1.0.0",
+  "description": "Graphical User Interface of RINGMesh and its plugins",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ringmesh/RINGMeshGUI.git"
+  },
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/ringmesh/RINGMeshGUI/issues"
+  },
+  "homepage": "http://ringmesh.org",
+  "devDependencies": {
+    "electron": "^1.7.10"
+  }
+}
