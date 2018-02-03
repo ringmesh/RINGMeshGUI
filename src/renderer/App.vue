@@ -56,7 +56,9 @@
       </v-toolbar>
       <v-content>
         <v-container fluid fill-height>
-          <welcome-view></welcome-view>
+          <v-slide-y-transition mode="out-in">
+            <router-view></router-view>
+          </v-slide-y-transition>
         </v-container>
       </v-content>
       <v-navigation-drawer
@@ -84,12 +86,8 @@
 </template>
 
 <script>
-  import WelcomeView from '@/components/WelcomeView'
   export default {
     name: 'ringmesh-gui',
-    components: {
-      WelcomeView
-    },
     data: () => ({
       clipped: false,
       drawer: true,
