@@ -25,7 +25,7 @@
     "postinstall": ""
   },
   "build": {
-    "productName": "rr",
+    "productName": "ringmesh-gui",
     "appId": "org.simulatedgreg.electron-vue",
     "directories": {
       "output": "build"
@@ -81,9 +81,9 @@
     "del": "^3.0.0",
     "devtron": "^1.4.0",
     "electron": "^1.7.5",
+    "electron-builder": "^19.56.2",
     "electron-debug": "^1.4.0",
     "electron-devtools-installer": "^2.2.0",
-    "electron-builder": "^19.19.1",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.30.1",
@@ -94,8 +94,8 @@
     "stylus-loader": "^3.0.1",
     "url-loader": "^0.5.9",
     "vue-html-loader": "^1.2.4",
-    "vue-loader": "^13.0.5",
-    "vue-style-loader": "^3.0.1",
+    "vue-loader": "^13.7.1",
+    "vue-style-loader": "^3.1.2",
     "vue-template-compiler": "^2.4.2",
     "webpack": "^3.5.2",
     "webpack-dev-server": "^2.7.1",
