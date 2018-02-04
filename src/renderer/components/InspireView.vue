@@ -16,16 +16,23 @@
 </template>
 
 <script>
+function requireDynamically(path)
+{
+    path = path.split('\\').join('/'); // Normalize windows slashes
+    return eval(`require('${path}');`); // Ensure Webpack does not analyze the require statement
+}
   export default {
     methods: {
       load () {
         const remote = require('electron').remote
-        const geomodelCore = require('/home/botella/RING/RINGMesh/build/Debug/ringmesh/node/ringmesh/geomodel_core').init().lib
+        const geomodelCore = requireDynamically('/home/botella/RING/RINGMeshGUI/build/geomodel_core').init('/home/botella/RING/RINGMeshGUI/build').lib
         let gm = new geomodelCore.GeoModel3D()
         const file = remote.dialog.showOpenDialog({properties: ['openFile']})
         console.log(file)
-        const io = require('/home/botella/RING/RINGMesh/build/Debug/ringmesh/node/ringmesh/RINGMesh_io').init().lib
+        const io = requireDynamically('/home/botella/RING/RINGMesh/build/Debug/ringmesh/node/ringmesh/io').init('/home/botella/RING/RINGMeshGUI/build').lib
         io.geomodel_load3D(gm, '/home/botella/RING/RINGMesh/data/modelA1.ml')
+        console.log(gm)
+        io.geomodel_save3D(gm, '/home/botella/RING/RINGMeshGUI/toto.gm')
       }
     }
   }
