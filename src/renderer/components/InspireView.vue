@@ -10,29 +10,39 @@
           </small>
         </footer>
       </blockquote>
-      <v-btn color="primary" @click.native="load">Load GM3D</v-btn>
+      <v-btn color="primary" @click.native="load">Load GeoModel3D</v-btn>
+      <v-list v-if="geomodels.length != 0">
+          <template v-for="geomodel in geomodels">
+            <v-list-tile>
+              <v-list-tile-content>
+                toto
+              </v-list-tile-content>
+            </v-list-tile>
+          </template>
+      </v-list>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
-function requireDynamically(path)
-{
-    path = path.split('\\').join('/'); // Normalize windows slashes
-    return eval(`require('${path}');`); // Ensure Webpack does not analyze the require statement
-}
   export default {
+    data: function() {
+      return {
+        geomodels: []
+      }
+    },
     methods: {
       load () {
-        const remote = require('electron').remote
-        const geomodelCore = requireDynamically('/home/botella/RING/RINGMeshGUI/build/geomodel_core').init('/home/botella/RING/RINGMeshGUI/build').lib
+        const { remote } = require('electron')
+        const geomodelCore = __non_webpack_require__('/home/botella/RING/RINGMeshGUI/build/geomodel_core').init('/home/botella/RING/RINGMeshGUI/build').lib
         let gm = new geomodelCore.GeoModel3D()
         const file = remote.dialog.showOpenDialog({properties: ['openFile']})
         console.log(file)
-        const io = requireDynamically('/home/botella/RING/RINGMesh/build/Debug/ringmesh/node/ringmesh/io').init('/home/botella/RING/RINGMeshGUI/build').lib
-        io.geomodel_load3D(gm, '/home/botella/RING/RINGMesh/data/modelA1.ml')
-        console.log(gm)
-        io.geomodel_save3D(gm, '/home/botella/RING/RINGMeshGUI/toto.gm')
+        if (file === undefined) return;
+        const io = __non_webpack_require__('/home/botella/RING/RINGMesh/build/Debug/ringmesh/node/ringmesh/io').init('/home/botella/RING/RINGMeshGUI/build').lib
+        io.geomodel_load3D(gm, file)
+        this.geomodels.push(gm)
+        console.log(this.geomodels.length)
       }
     }
   }
