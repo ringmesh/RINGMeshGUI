@@ -34,12 +34,13 @@
     methods: {
       load () {
         const { remote } = require('electron')
-        const geomodelCore = __non_webpack_require__('/home/botella/RING/RINGMeshGUI/build/geomodel_core').init('/home/botella/RING/RINGMeshGUI/build').lib
-        let gm = new geomodelCore.GeoModel3D()
         const file = remote.dialog.showOpenDialog({properties: ['openFile']})
         console.log(file)
         if (file === undefined) return;
+
+        const geomodelCore = __non_webpack_require__('/home/botella/RING/RINGMeshGUI/build/geomodel_core').init('/home/botella/RING/RINGMeshGUI/build').lib
         const io = __non_webpack_require__('/home/botella/RING/RINGMesh/build/Debug/ringmesh/node/ringmesh/io').init('/home/botella/RING/RINGMeshGUI/build').lib
+        let gm = new geomodelCore.GeoModel3D()
         io.geomodel_load3D(gm, file)
         this.geomodels.push(gm)
         console.log(this.geomodels.length)
