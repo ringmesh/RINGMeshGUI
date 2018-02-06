@@ -44,11 +44,11 @@
         let gm = new geomodelCore.GeoModel3D()
         if( io.geomodel_load3D(gm, file) ) {
           this.geomodels.push(gm)
-          let notif = new Notification(gm.name(), {
+          new Notification(gm.name(), {
               body: 'Succes: loading and validating'
           })
         } else {
-          let notif = new Notification(gm.name(), {
+          new Notification(gm.name(), {
               body: 'Failed to load and validate'
           })
         }
