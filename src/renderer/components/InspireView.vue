@@ -14,9 +14,9 @@
       <v-list v-if="geomodels.length != 0">
           <template v-for="geomodel in geomodels">
             <v-list-tile>
-              <v-list-tile-content>
-                toto
-              </v-list-tile-content>
+              <v-list-tile-title>
+                {{ geomodel.name() }}
+              </v-list-tile-title>
             </v-list-tile>
           </template>
       </v-list>
@@ -38,12 +38,12 @@
         console.log(file)
         if (file === undefined) return;
 
-        const geomodelCore = __non_webpack_require__('/home/botella/RING/RINGMeshGUI/build/geomodel_core').init('/home/botella/RING/RINGMeshGUI/build').lib
-        const io = __non_webpack_require__('/home/botella/RING/RINGMesh/build/Debug/ringmesh/node/ringmesh/io').init('/home/botella/RING/RINGMeshGUI/build').lib
+        require('app-module-path').addPath('/home/botella/RING/RINGMesh/build/Debug/ringmesh/node')
+        const geomodelCore = __non_webpack_require__('ringmesh/geomodel_core').init().lib
+        const io = __non_webpack_require__('ringmesh/io').init().lib
         let gm = new geomodelCore.GeoModel3D()
         io.geomodel_load3D(gm, file)
         this.geomodels.push(gm)
-        console.log(this.geomodels.length)
       }
     }
   }
