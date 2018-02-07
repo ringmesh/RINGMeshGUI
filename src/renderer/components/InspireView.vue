@@ -10,6 +10,10 @@
           </small>
         </footer>
       </blockquote>
+      <v-text-field
+        label="RINGMesh install location"
+        v-model="ringmeshPath"
+      ></v-text-field>
       <v-btn color="primary" @click.native="load">Load GeoModel3D</v-btn>
       <v-list v-if="geomodels.length != 0">
           <template v-for="geomodel in geomodels">
@@ -28,6 +32,7 @@
   export default {
     data: function() {
       return {
+        ringmeshPath: "",
         geomodels: []
       }
     },
@@ -38,7 +43,7 @@
         console.log(file)
         if (file === undefined) return;
 
-        require('app-module-path').addPath('/home/botella/RING/RINGMesh/build/Debug/ringmesh/node')
+        require('app-module-path').addPath(this.ringmeshPath + '/node')
         const geomodelCore = __non_webpack_require__('ringmesh/geomodel_core').init().lib
         const io = __non_webpack_require__('ringmesh/io').init().lib
         let gm = new geomodelCore.GeoModel3D()
@@ -52,8 +57,6 @@
               body: 'Failed to load and validate'
           })
         }
-
-
       }
     }
   }
