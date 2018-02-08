@@ -59,11 +59,12 @@
     }
   },
   "dependencies": {
+    "app-module-path": "^2.2.0",
     "vue": "^2.4.2",
     "vue-electron": "^1.0.6",
     "vue-router": "^3.0.1",
-    "vuex": "^2.3.1",
-    "vuetify": "0.17.4"
+    "vuetify": "0.17.4",
+    "vuex": "^2.3.1"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
