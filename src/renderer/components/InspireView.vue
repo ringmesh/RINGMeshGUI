@@ -36,7 +36,7 @@
         const io = __non_webpack_require__('ringmesh/io').init().lib
         let gm = new geomodelCore.GeoModel3D()
         if( io.geomodel_load3D(gm, file) ) {
-          this.$store.commit('GeoModels/add', gm)
+          this.$store.commit('GeoModels/add_geomodel', gm)
           new Notification(gm.name(), {
               body: 'Succes: loading and validating'
           })

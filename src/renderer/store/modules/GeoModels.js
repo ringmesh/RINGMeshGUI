@@ -4,7 +4,7 @@ export default {
     data: []
   },
   mutations: {
-    add(state, geomodel) {
+    add_geomodel(state, geomodel) {
       state.data.push(geomodel)
     }
   },
