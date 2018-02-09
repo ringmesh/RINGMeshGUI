@@ -17,11 +17,11 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   export default {
     data: function() {
       return {
-        ringmeshPath: "",
-        geomodels: []
+        ringmeshPath: ""
       }
     },
     methods: {
@@ -36,7 +36,7 @@
         const io = __non_webpack_require__('ringmesh/io').init().lib
         let gm = new geomodelCore.GeoModel3D()
         if( io.geomodel_load3D(gm, file) ) {
-          this.geomodels.push(gm)
+          this.$store.commit('GeoModels/add_geomodel', gm)
           new Notification(gm.name(), {
               body: 'Succes: loading and validating'
           })
@@ -46,6 +46,11 @@
           })
         }
       }
+    },
+    computed: {
+      ...mapGetters({
+          geomodels: 'GeoModels/geomodels'
+      })
     }
   }
 </script>
