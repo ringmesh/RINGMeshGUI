@@ -27,11 +27,9 @@
       load () {
         const { remote } = require('electron')
         const file = remote.dialog.showOpenDialog({properties: ['openFile']})
-        console.log(file)
         if (file === undefined) return;
 
         const geomodelCore = this.load_plugin('ringmesh/geomodel_core')
-        console.log(geomodelCore)
         let gm = new geomodelCore.GeoModel3D()
         const io = this.load_plugin('ringmesh/io')
         if( io.geomodel_load3D(gm, file) ) {
