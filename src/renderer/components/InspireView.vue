@@ -19,6 +19,7 @@
 <script>
   import { mapGetters } from 'vuex'
   export default {
+    name: 'inspire-view',
     data: function() {
       return {
         ringmeshPath: ""
