@@ -19,6 +19,7 @@
 <script>
   import { mapGetters } from 'vuex'
   export default {
+    name: 'inspire-view',
     methods: {
       load_plugin(plugin) {
         require('app-module-path').addPath(this.ringmeshPath + '/node')
