@@ -20,22 +20,19 @@
   import { mapGetters } from 'vuex'
   export default {
     name: 'inspire-view',
-    data: function() {
-      return {
-        ringmeshPath: ""
-      }
-    },
     methods: {
+      load_plugin(plugin) {
+        require('app-module-path').addPath(this.ringmeshPath + '/node')
+        return __non_webpack_require__(plugin).init().lib
+      },
       load () {
         const { remote } = require('electron')
         const file = remote.dialog.showOpenDialog({properties: ['openFile']})
-        console.log(file)
         if (file === undefined) return;
 
-        require('app-module-path').addPath(this.ringmeshPath + '/node')
-        const geomodelCore = __non_webpack_require__('ringmesh/geomodel_core').init().lib
-        const io = __non_webpack_require__('ringmesh/io').init().lib
+        const geomodelCore = this.load_plugin('ringmesh/geomodel_core')
         let gm = new geomodelCore.GeoModel3D()
+        const io = this.load_plugin('ringmesh/io')
         if( io.geomodel_load3D(gm, file) ) {
           this.$store.commit('GeoModels/add_geomodel', gm)
           new Notification(gm.name(), {
@@ -51,7 +48,15 @@
     computed: {
       ...mapGetters({
           geomodels: 'GeoModels/geomodels'
-      })
+      }),
+      ringmeshPath: {
+        get(){
+          return this.$store.getters['Settings/ringmeshPath']
+        },
+        set(value) {
+          this.$store.commit('Settings/set_ringmesh_path', value)
+        }
+      }
     }
   }
 </script>
